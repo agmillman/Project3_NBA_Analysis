@@ -154,6 +154,6 @@ print(all_stats_df)
 #print(all_stats_df.columns.to_list)
 
 # Step 7: Save to CSV
-# filtered_players_stats.to_csv("nba_first_20_players_2013_2023_stats.csv", index=False)
+all_stats_df.to_csv("2013_2023_stats.csv", index=False)
 
-#print("Filtered stats for the first 20 players saved to 'nba_first_20_players_2013_2023_stats.csv'")
+print("Filtered stats for the players 2013-2023")
