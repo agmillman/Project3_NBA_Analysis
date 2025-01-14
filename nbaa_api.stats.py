@@ -9,8 +9,7 @@ import time
 
 
 # Fetch Nikola Jokić's career stats (player_id='203999')
-
-career = playercareerstats.PlayerCareerStats(player_id='76003')
+career = playercareerstats.PlayerCareerStats(player_id='203999')
 
 # Get data as a pandas DataFrame
 df = career.get_data_frames()[0]
@@ -26,32 +25,36 @@ json_data = career.get_json()
 dict_data = career.get_dict()
 #print(dict_data)
 
-# Fetch all players
+# Fetch all players ever
 players = _get_players()
 
 # Print the first 10 players for verification
 #print(players[:10])
-players_df = pd.DataFrame(players)
+
+# players_df = pd.DataFrame(players)
 #print(players_df)
 
-#random sample of players
-#random_players = players_df.sample(10)
+# RANDOM sample of players for verification
+# random_players = players_df.sample(10) # 10 players
+#print(random_players) # Prints their full names
 
-#Print their full names
-#print(random_players)
-
-#player_name = 'Nikola Jokić'
-#matched_players = players_df[players_df['full_name'].str.contains(player_name, case=False)]
-
+# Search for exact player
+# player_name = 'Nikola Jokić'
+# matched_players = players_df[players_df['full_name'].str.contains(player_name, case=False)]
 #print(matched_players)
 
+# -------------------------------------------- #
 # Get all NBA teams
+
+# Use get teams function
 # nba_teams = teams.get_teams()
 
+# Convert to DataFrame
 # teams_df = pd.DataFrame(nba_teams)
 
 # print(teams_df)
 
+# -------------------------------------------- #
 # Get season IDs
 # teams = get_teams()
 # sample_team_id = nba_teams[0]['id']  # Use the first team from the list
@@ -67,6 +70,10 @@ players_df = pd.DataFrame(players)
 
 # Print the seasons
 # print(seasons)
+
+
+
+# ----------------HEATMAP EXAMPLE-------------------- #
 
 '''
 # Fetch shot data for Stephen Curry (player_id=201939) in the 2022-23 season
@@ -100,9 +107,11 @@ plt.xlabel("Game Date")
 plt.show()
 '''
 
-#players_subset = players[:20]  # Slicing the first 20 players
+# -------------------------------------------- #
 
-players_subset = players[:20]
+# PUTTING ALL PLAYERS ALONG WITH STATS INTO SINGLE DATAFRAME
+
+players_subset = players[:20]  # Slicing the first 20 players
 
 # Step 2: Prepare a list to store career stats
 filtered_players_stats = []
@@ -141,5 +150,10 @@ for player in players_subset:
 # Step 4: Combine all stats into a single DataFrame
 all_stats_df = pd.concat(filtered_players_stats, ignore_index=True)
 
-#print(all_stats_df)
-print(all_stats_df.columns.to_list)
+print(all_stats_df)
+#print(all_stats_df.columns.to_list)
+
+# Step 7: Save to CSV
+# filtered_players_stats.to_csv("nba_first_20_players_2013_2023_stats.csv", index=False)
+
+#print("Filtered stats for the first 20 players saved to 'nba_first_20_players_2013_2023_stats.csv'")
