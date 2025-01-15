@@ -111,16 +111,16 @@ plt.show()
 
 # PUTTING ALL PLAYERS ALONG WITH STATS INTO SINGLE DATAFRAME
 
-players_subset = players[:20]  # Slicing the first 20 players
+#players_subset = players[:50]  # Slicing the first 20 players
 
 # Step 2: Prepare a list to store career stats
 filtered_players_stats = []
 
 # Step 3: Define the target seasons
-target_seasons = [f"{year}-{str(year + 1)[-2:]}" for year in range(2013, 2023)]
+target_seasons = [f"{year}-{str(year + 1)[-2:]}" for year in range(2014, 2022)]
 
 # Step 3: Loop through each player
-for player in players_subset:
+for player in players:
     player_id = player['id']
     player_name = player['full_name']
     
@@ -141,7 +141,7 @@ for player in players_subset:
             #print(f"Included {player_name} in filtered stats")
         
         # Sleep to avoid hitting rate limits
-        time.sleep(0.5)
+        time.sleep(1.0)
         
     except Exception as e:
         print(f"Could not fetch stats for {player_name}: {e}")
