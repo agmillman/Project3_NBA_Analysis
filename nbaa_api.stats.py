@@ -111,7 +111,7 @@ plt.show()
 
 # PUTTING ALL PLAYERS ALONG WITH STATS INTO SINGLE DATAFRAME
 
-players_subset = players[:20]  # Slicing the first 20 players
+players_subset = players[:100]  # Slicing the first 20 players
 
 # Step 2: Prepare a list to store career stats
 filtered_players_stats = []
@@ -128,6 +128,9 @@ for player in players_subset:
         # Fetch career stats for the player
         career = playercareerstats.PlayerCareerStats(player_id=player_id)
         career_df = career.get_data_frames()[0]
+
+        # Filter for seasons between 2013-2023
+        career_df = career_df[career_df['SEASON_ID'].isin(target_seasons)]
         
         # Check if the player played during the target seasons
         if any(season in target_seasons for season in career_df['SEASON_ID']):
