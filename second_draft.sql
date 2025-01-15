@@ -1,8 +1,8 @@
 -- Database: nba_stats
 
--- DROP DATABASE IF EXISTS public;
+-- DROP DATABASE IF EXISTS nba_stats;
 
-CREATE DATABASE public
+CREATE DATABASE nba_stats
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
@@ -13,7 +13,7 @@ CREATE DATABASE public
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
 
-ALTER DATABASE public
+ALTER DATABASE nba_stats
     SET search_path TO public;
 
 
