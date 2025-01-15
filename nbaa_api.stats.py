@@ -111,7 +111,7 @@ plt.show()
 
 # PUTTING ALL PLAYERS ALONG WITH STATS INTO SINGLE DATAFRAME
 
-players_subset = players[:10]  # Slicing the first 20 players
+players_subset = players[:250]  # Slicing the first 20 players
 
 # Step 2: Prepare a list to store career stats
 filtered_players_stats = []
