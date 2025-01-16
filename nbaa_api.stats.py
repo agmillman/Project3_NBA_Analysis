@@ -75,7 +75,7 @@ players = _get_players()
 
 # ----------------HEATMAP EXAMPLE-------------------- #
 
-'''
+
 # Fetch shot data for Stephen Curry (player_id=201939) in the 2022-23 season
 player_id = 201939  # Stephen Curry
 season = "2015-16"
@@ -89,7 +89,7 @@ shot_chart = shotchartdetail.ShotChartDetail(
 
 # Convert to DataFrame
 shot_df = shot_chart.get_data_frames()[0]
-#print(shot_df.columns.tolist())
+print(shot_df.columns.tolist())
 print(shot_df.head())
 
 # Group data by shot zone and count attempts
@@ -105,58 +105,58 @@ plt.title("Shot Selection Heatmap")
 plt.ylabel("Shot Zone")
 plt.xlabel("Game Date")
 plt.show()
-'''
+
 
 # -------------------------------------------- #
 
 # PUTTING ALL PLAYERS ALONG WITH STATS INTO SINGLE DATAFRAME
 
-players_subset = players[:10]  # Slicing the first 20 players
+# players_subset = players[:10]  # Slicing the first 20 players
 
-# Step 2: Prepare a list to store career stats
-filtered_players_stats = []
+# # Step 2: Prepare a list to store career stats
+# filtered_players_stats = []
 
-# Step 3: Define the target seasons
-target_seasons = [f"{year}-{str(year + 1)[-2:]}" for year in range(2013, 2023)]
+# # Step 3: Define the target seasons
+# target_seasons = [f"{year}-{str(year + 1)[-2:]}" for year in range(2013, 2023)]
 
-# Step 3: Loop through each player
-for player in players_subset:
-    player_id = player['id']
-    player_name = player['full_name']
+# # Step 3: Loop through each player
+# for player in players_subset:
+#     player_id = player['id']
+#     player_name = player['full_name']
     
-    try:
-        # Fetch career stats for the player
-        career = playercareerstats.PlayerCareerStats(player_id=player_id)
-        career_df = career.get_data_frames()[0]
+#     try:
+#         # Fetch career stats for the player
+#         career = playercareerstats.PlayerCareerStats(player_id=player_id)
+#         career_df = career.get_data_frames()[0]
 
-        # Filter for seasons between 2013-2023
-        career_df = career_df[career_df['SEASON_ID'].isin(target_seasons)]
+#         # Filter for seasons between 2013-2023
+#         career_df = career_df[career_df['SEASON_ID'].isin(target_seasons)]
         
-        # Check if the player played during the target seasons
-        if any(season in target_seasons for season in career_df['SEASON_ID']):
-            # Add player name to the DataFrame
-            career_df['PLAYER_NAME'] = player_name
+#         # Check if the player played during the target seasons
+#         if any(season in target_seasons for season in career_df['SEASON_ID']):
+#             # Add player name to the DataFrame
+#             career_df['PLAYER_NAME'] = player_name
             
-            # Append the player's stats to the list
-            filtered_players_stats.append(career_df)
+#             # Append the player's stats to the list
+#             filtered_players_stats.append(career_df)
             
-            # Optional: Print progress
-            #print(f"Included {player_name} in filtered stats")
+#             # Optional: Print progress
+#             #print(f"Included {player_name} in filtered stats")
         
-        # Sleep to avoid hitting rate limits
-        time.sleep(0.5)
+#         # Sleep to avoid hitting rate limits
+#         time.sleep(0.5)
         
-    except Exception as e:
-        print(f"Could not fetch stats for {player_name}: {e}")
+#     except Exception as e:
+#         print(f"Could not fetch stats for {player_name}: {e}")
 
 
-# Step 4: Combine all stats into a single DataFrame
-all_stats_df = pd.concat(filtered_players_stats, ignore_index=True)
+# # Step 4: Combine all stats into a single DataFrame
+# all_stats_df = pd.concat(filtered_players_stats, ignore_index=True)
 
-print(all_stats_df)
-#print(all_stats_df.columns.to_list)
+# print(all_stats_df)
+# #print(all_stats_df.columns.to_list)
 
-# Step 7: Save to CSV
-all_stats_df.to_csv("2013_2023_stats.csv", index=False)
+# # Step 7: Save to CSV
+# all_stats_df.to_csv("2013_2023_stats.csv", index=False)
 
-print("Filtered stats for the players 2013-2023")
+# print("Filtered stats for the players 2013-2023")
