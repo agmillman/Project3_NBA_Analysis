@@ -1,0 +1,76 @@
+/* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+  }
+  
+  h1 {
+    text-align: center;
+    color: #444;
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  select {
+    width: 100%;
+    max-width: 300px;
+    margin: 10px 0 20px;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+  }
+  
+  #player1, #player2 {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  div {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  #lineChart, #scatterChart {
+    margin: 20px auto;
+    max-width: 800px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Chart-specific styling */
+  svg {
+    font-family: Arial, sans-serif;
+  }
+  
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+  }
+  
+  .axis text {
+    font-size: 12px;
+  }
+  
+  .line {
+    fill: none;
+    stroke-width: 2;
+  }
+  
+  .circle {
+    stroke: #333;
+  }
+  

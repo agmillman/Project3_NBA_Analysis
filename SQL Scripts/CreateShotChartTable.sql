@@ -9,9 +9,9 @@ CREATE TABLE IF NOT EXISTS public."ShotChartDetail"
 	"PLAYER_NAME" character varying COLLATE pg_catalog."default",
 	"TEAM_ID" bigint NOT NULL,
 	"TEAM_NAME" character varying COLLATE pg_catalog."default",
-	"PERIOD" int,
-	"MINUTES_REMAINING" numeric,
-	"SECONDS_REMAINING" numeric,
+	"PERIOD" int NOT NULL,
+	"MINUTES_REMAINING" numeric NOT NULL,
+	"SECONDS_REMAINING" numeric NOT NULL,
 	"EVENT_TYPE" character varying COLLATE pg_catalog."default",
 	"ACTION_TYPE" character varying COLLATE pg_catalog."default",
 	"SHOT_TYPE" character varying COLLATE pg_catalog."default",
@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS public."ShotChartDetail"
 	"GAME_DATE" date,
 	"HTM" character varying COLLATE pg_catalog."default",
 	"VTM" character varying COLLATE pg_catalog."default",
-	CONSTRAINT "ShotChartDetail_pkey" PRIMARY KEY ("GAME_ID", "PLAYER_ID", "TEAM_ID")
+	CONSTRAINT "ShotChartDetail_pkey" PRIMARY KEY ("GAME_ID", "PLAYER_ID", "TEAM_ID", "PERIOD", "MINUTES_REMAINING", "SECONDS_REMAINING")
 )
 
 TABLESPACE pg_default;

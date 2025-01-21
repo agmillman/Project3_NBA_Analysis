@@ -1,0 +1,71 @@
+// Draw a multi-line chart with D3
+  const drawMultiLineChart = (data, container, metrics, colors) => {
+    console.log('Raw Data:', data);
+
+    // Filter invalid data
+    const filteredData = data.filter((d) =>
+      metrics.every((metric) => d.season_id && !isNaN(d[metric]))
+    );
+    console.log('Filtered Data:', filteredData);
+
+    clearChart(container);
+
+    // Dimensions
+    const margin = { top: 20, right: 30, bottom: 30, left: 40 };
+    const width = 600 - margin.left - margin.right;
+    const height = 400 - margin.top - margin.bottom;
+
+    // Create SVG
+    const svg = d3.select(container)
+      .append('svg')
+      .attr('width', width + margin.left + margin.right)
+      .attr('height', height + margin.top + margin.bottom)
+      .append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
+
+    // Scales
+    const x = d3.scalePoint()
+      .domain(filteredData.map((d) => String(d.season_id)))
+      .range([0, width]);
+
+    const y = d3.scaleLinear()
+      .domain([
+        0,
+        d3.max(filteredData, (d) => Math.max(...metrics.map((metric) => d[metric]))),
+      ])
+      .nice()
+      .range([height, 0]);
+
+    console.log('X Domain:', x.domain());
+    console.log('Y Domain:', y.domain());
+
+    // Axes
+    svg.append('g')
+      .attr('transform', `translate(0,${height})`)
+      .call(d3.axisBottom(x));
+
+    svg.append('g').call(d3.axisLeft(y));
+
+    // Generate a line for each metric
+    metrics.forEach((metric, index) => {
+      const line = d3.line()
+        .x((d) => x(d.season_id))
+        .y((d) => y(d[metric]));
+
+      // Add the path for the line
+      svg.append('path')
+        .datum(filteredData)
+        .attr('fill', 'none')
+        .attr('stroke', colors[index])
+        .attr('stroke-width', 2)
+        .attr('d', line);
+
+      // Add a legend for each line
+      svg.append('text')
+        .attr('x', width - 150)
+        .attr('y', margin.top + index * 20)
+        .attr('fill', colors[index])
+        .style('font-size', '12px')
+        .text(metric.toUpperCase());
+    });
+  }; // <--- Correct closing brace for drawMultiLineChart
