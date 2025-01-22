@@ -77,8 +77,8 @@ players = _get_players()
 
 
 # Fetch shot data for Stephen Curry (player_id=201939) in the 2022-23 season
-player_id = 201939  # Stephen Curry
-season = "2015-16"
+player_id = 201572  # Stephen Curry
+season = "ALL"
 
 shot_chart = shotchartdetail.ShotChartDetail(
     team_id=0,  # Use 0 for all teams
@@ -87,24 +87,26 @@ shot_chart = shotchartdetail.ShotChartDetail(
     season_type_all_star="Regular Season"
 )
 
-# Convert to DataFrame
+# # Convert to DataFrame
 shot_df = shot_chart.get_data_frames()[0]
 print(shot_df.columns.tolist())
 print(shot_df.head())
 
-# Group data by shot zone and count attempts
-shot_zone_data = shot_df.groupby(['SHOT_ZONE_BASIC', 'GAME_DATE']).size().unstack(fill_value=0)
+shot_df.to_csv("BL_shots.csv", index=False)
 
-import seaborn as sns
-import matplotlib.pyplot as plt
+# # # Group data by shot zone and count attempts
+# shot_zone_data = shot_df.groupby(['SHOT_ZONE_BASIC', 'GAME_DATE']).size().unstack(fill_value=0)
 
-# Create a heatmap of shot attempts by zone
-plt.figure(figsize=(10, 8))
-sns.heatmap(shot_zone_data, cmap="YlGnBu", annot=False)
-plt.title("Shot Selection Heatmap")
-plt.ylabel("Shot Zone")
-plt.xlabel("Game Date")
-plt.show()
+# import seaborn as sns
+# import matplotlib.pyplot as plt
+
+# # # Create a heatmap of shot attempts by zone
+# plt.figure(figsize=(10, 8))
+# sns.heatmap(shot_zone_data, cmap="YlGnBu", annot=False)
+# plt.title("Shot Selection Heatmap")
+# plt.ylabel("Shot Zone")
+# plt.xlabel("Game Date")
+# plt.show()
 
 
 # -------------------------------------------- #
@@ -117,12 +119,12 @@ plt.show()
 # # Step 2: Prepare a list to store career stats
 # filtered_players_stats = []
 
-# # Step 3: Define the target seasons
+# # # Step 3: Define the target seasons
 # target_seasons = [f"{year}-{str(year + 1)[-2:]}" for year in range(2013, 2023)]
 
-# # Step 3: Loop through each player
-# for player in players_subset:
-#     player_id = player['id']
+# # # Step 3: Loop through each player
+#  for player in players_subset:
+#      player_id = player['id']
 #     player_name = player['full_name']
     
 #     try:
